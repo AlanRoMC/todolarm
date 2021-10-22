@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+//import 'package:intl/intl.dart';
 
 class Titulo extends StatelessWidget {
   const Titulo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    DateTime now = new DateTime.now();
-    return SafeArea(
-      child: Container(
+    var now = new DateTime.now();
+    //var formattedDate = DateFormat('EEE, d MMM').format(now);
+    return Container(
         margin: EdgeInsets.only(top: 60, left: 20),
         child: Column(
           
@@ -19,9 +20,9 @@ class Titulo extends StatelessWidget {
               color: Colors.black)
             ),
             Text('$now')
+            //Text('$formattedDate')
           ],
         ),
-      ),
     );
   }
 }
