@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:todolarm/pages/formulario.dart';
 import 'package:todolarm/widgets/background.dart';
 
 class Principal extends StatefulWidget {
@@ -12,14 +13,12 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
   @override
   Widget build(BuildContext context) {
-    
-    
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         children: [
           Fondo(),
-          _Titulo()
+          _Titulo(),
         ],
       ),
     );
@@ -34,31 +33,52 @@ class _Titulo extends StatelessWidget {
     var now = DateTime.now();
     var formattedDate = DateFormat('EEE, d MMM').format(now);
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          //Fondo(),
-          Container(
-            //padding: EdgeInsets.all(32),
-            margin: EdgeInsets.symmetric(horizontal:30,vertical:30),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 20),
-                    Text('Mis Tareas', style: TextStyle(color: Colors.white, fontSize: 26)),
-                    SizedBox(height: 20),
-                    Text('$formattedDate', style: TextStyle(color: Colors.white, fontSize: 20)),
-                    SizedBox(height: 20),
-                  ],
-                ),
-                Expanded(child: Container()),
-                Icon(Icons.add_box_outlined, color: Colors.white, size: 40)
-              ],
-            ),
+      child: Column(children: [
+        //Fondo(),
+        Container(
+          //padding: EdgeInsets.all(32),
+          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20),
+                  Text('Mis Tareas',
+                      style: TextStyle(color: Colors.white, fontSize: 26)),
+                  SizedBox(height: 20),
+                  Text('$formattedDate',
+                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                  SizedBox(height: 20),
+                ],
+              ),
+              Expanded(child: Container()),
+              _AgregarAlarma(),
+            ],
           ),
-        ]
-      ),
+        ),
+      ]),
+    );
+  }
+}
+
+class _AgregarAlarma extends StatelessWidget {
+  const _AgregarAlarma({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Formulario(),
+          ),
+        )
+      },
+      color: Colors.white,
+      iconSize: 40,
+      icon: Icon(Icons.add_alarm),
     );
   }
 }
